@@ -1,0 +1,20 @@
+data/AUTSL
+data/VN_SIGN/video*
+data/VN_SIGN/pose*
+data/VN_SIGN/poseflow*
+data/VN_SIGN/wholebody*
+log
+checkpoints
+*pycache*
+*init*
+out-img
+*.mp4
+inference_config/*.onnx
+cc*
+pretrained_models
+*.pt
+receivedVideo
+wandb
+# pretrained_models checkpoints in Drive
+# temporary
+data/VN_SIGN/full_data_200_400.csv
