@@ -82,7 +82,7 @@ class VTN_ATT_PF_Dataset(Dataset):
     def read_videos(self,name):
         index_setting = self.data_cfg['transform_cfg'].get('index_setting', ['consecutive','pad','central','pad'])
        
-        path = f'{self.base_url}/videos/{name}'   
+        path = f'/mnt/disk4/handsign_project/son_data/Yolo_dataset/Blur_video/{name}'   
         vlen,width,height = self.count_frames(path)
        
         selected_index, pad = get_selected_indexs(vlen-5,self.data_cfg['num_output_frames'],self.is_train,index_setting,temporal_stride=self.data_cfg['temporal_stride'])

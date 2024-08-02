@@ -1,7 +1,7 @@
 task: ISLR
 data:
-  model_name: mvit_v2
-  base_url: /mnt/disk4/handsign_project/son_data/Experiment/data
+  model_name: swin_transformer
+  base_url: data
   dataset_name: VN_SIGN
   temporal_stride: 2
   num_output_frames: 16
@@ -15,7 +15,7 @@ data:
   vid_transform:
     IMAGE_SIZE: 224
     NORM_MEAN_IMGNET: [0.485, 0.456, 0.406]
-    NORM_STD_IMGNET: [0.229, 0.224, 0.225]checkpoints
+    NORM_STD_IMGNET: [0.229, 0.224, 0.225]
   SHOULDER_DIST_EPSILON: 1.2
   WRIST_DELTA: 0.15
   label_folder: label_1_1000
@@ -26,15 +26,15 @@ training:
     cts_x: 1
     cosine_x: 1
   label_smoothing: 0
-  device: cuda:2
+  device: cuda:1
   overwrite: true
   log_freq: 1
-  experiment_name: "MVIT V2 Small for one view (1-1000) finetune from AUTSL (Training with Blur video)"
-  model_dir: results/mvitv2/vn_sign
+  experiment_name: "Swin Transformer 3D Tiny for one view from scratch (1-1000)"
+  model_dir: results/swin_transformer/vn_sign
   random_seed: 42
   shuffle: True
   num_workers: 12
-  prefetch_factor: 2
+  prefetch_factor: 4
   batch_size: 4 #to-debug!
   total_epoch: 300 #to-debug!
   learning_rate: 0.0001
@@ -49,8 +49,8 @@ training:
   lr_scheduler: StepLR
   top_k: 5
   print_stats: true
-  pretrained: true
-  pretrained_model: checkpoints/mvit_v2/MVIT V2 Small for one view (1-1000) finetune from AUTSL (Training with Blur video)/current_checkpoints.pth
+  pretrained: false
+  pretrained_model: None #checkpoints/swin_transformer/Swin Transformer 3D Tiny for one view of AUTSL pretrained on kinetics400 /autsl_best_checkpoints.pth
   lr_step_size: 5
   gamma: 0.5
   num_accumulation_steps: 5
@@ -59,7 +59,7 @@ training:
   delta: 0
   is_early_stopping: true
   gradient_clip_val: 0
-  w_decay: 1e-4
+  w_decay: 0.02
   log_train_step: true
   log_steps: 50
   evaluate_step: 250

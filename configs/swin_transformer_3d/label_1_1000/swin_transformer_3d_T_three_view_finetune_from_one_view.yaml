@@ -1,7 +1,7 @@
 task: ISLR
 data:
   model_name: swin_transformer_3d_ThreeView
-  base_url: /mnt/disk2/anhnct/Hand-Sign-Recognition/data/VN_SIGN
+  base_url: data
   dataset_name: VN_SIGN
   temporal_stride: 2
   num_output_frames: 16
@@ -22,7 +22,7 @@ data:
   data_type: 1_1000_three_view_ord1
 training:
   label_smoothing: 0
-  device: cuda:2
+  device: cuda:1
   overwrite: true
   log_freq: 1
   experiment_name: "Swin Transformer 3D Tiny for threeview finetune from oneview (1-1000)"

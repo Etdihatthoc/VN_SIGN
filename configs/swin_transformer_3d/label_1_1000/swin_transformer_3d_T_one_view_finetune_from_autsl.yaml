@@ -1,7 +1,7 @@
 task: ISLR
 data:
   model_name: swin_transformer
-  base_url: /mnt/disk2/anhnct/Hand-Sign-Recognition/data/VN_SIGN
+  base_url: data
   dataset_name: VN_SIGN
   temporal_stride: 2
   num_output_frames: 16
@@ -26,10 +26,10 @@ training:
     cts_x: 1
     cosine_x: 1
   label_smoothing: 0
-  device: cuda:3
+  device: cuda:2
   overwrite: true
   log_freq: 1
-  experiment_name: "Swin Transformer 3D Tiny for one view finetune from autsl (1-1000)"
+  experiment_name: "Swin Transformer 3D Tiny for one view non-pretrained (1-1000)"
   model_dir: results/swin_transformer/vn_sign
   random_seed: 42
   shuffle: True
@@ -49,8 +49,8 @@ training:
   lr_scheduler: StepLR
   top_k: 5
   print_stats: true
-  pretrained: true
-  pretrained_model: checkpoints/swin_transformer/Swin Transformer 3D Tiny for one view of AUTSL pretrained on kinetics400 /autsl_best_checkpoints.pth
+  pretrained: false
+  pretrained_model: None #checkpoints/swin_transformer/Swin Transformer 3D Tiny for one view of AUTSL pretrained on kinetics400 /autsl_best_checkpoints.pth
   lr_step_size: 5
   gamma: 0.5
   num_accumulation_steps: 5
