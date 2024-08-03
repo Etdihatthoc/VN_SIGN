@@ -1,7 +1,7 @@
 task: ISLR
 data:
   model_name: InceptionI3d_ThreeView
-  base_url: data/VN_SIGN
+  base_url: data
   dataset_name: VN_SIGN
   temporal_stride: 2
   num_output_frames: 16
@@ -18,8 +18,8 @@ data:
     NORM_STD_IMGNET: [0.229, 0.224, 0.225]
   SHOULDER_DIST_EPSILON: 1.2
   WRIST_DELTA: 0.15
-  label_folder: label_1_200
-  data_type: 1_200_three_view_ord1
+  label_folder: label_1_1000
+  data_type: 1_1000_three_view_ord1
 training:
   test: True
   coefficient:
@@ -69,7 +69,7 @@ training:
 inference:
   batch_size: 8
 model:
-  num_classes: 199
+  num_classes: 1000
   spatial_squeeze: True
   final_endpoint: Logits
   name: inception_i3d

@@ -51,7 +51,7 @@ training:
   top_k: 5
   print_stats: true
   pretrained: true
-  pretrained_model: checkpoints/swin_transformer/Swin Transformer 3D Tiny for one view finetune from autsl (1-1000)/best_checkpoints.pth
+  pretrained_model: checkpoints/swin_transformer/Swin Transformer 3D Tiny for one view from scratch (1-1000)/best_checkpoints.pth
   lr_step_size: 5
   gamma: 0.5
   num_accumulation_steps: 5

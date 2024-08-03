@@ -92,7 +92,7 @@ class ThreeViewsData(Dataset):
 
        
         if self.data_cfg['dataset_name'] == "VN_SIGN":
-            path = f'{self.base_url}/videos/{name}'   
+            path = f'data/Blur_video/{name}'   
         vr = VideoReader(path,width=320, height=256)
         frames = vr.get_batch(selected_index).asnumpy()
         for frame_index,frame in zip(selected_index,frames):
@@ -164,9 +164,9 @@ class ThreeViewsData(Dataset):
     def read_videos(self,center,left,right):
         index_setting = self.data_cfg['transform_cfg'].get('index_setting', ['consecutive','pad','central','pad'])
         # 
-        vlen1,c_width,c_height = self.count_frames(os.path.join(self.base_url,'videos',center))
-        vlen2,l_width,l_height = self.count_frames(os.path.join(self.base_url,'videos',left))
-        vlen3,r_width,r_height = self.count_frames(os.path.join(self.base_url,'videos',right))
+        vlen1,c_width,c_height = self.count_frames(os.path.join('data/Blur_video',center))
+        vlen2,l_width,l_height = self.count_frames(os.path.join('data/Blur_video',left))
+        vlen3,r_width,r_height = self.count_frames(os.path.join('data/Blur_video',right))
 
        
         min_vlen = min(vlen1,min(vlen2,vlen3))

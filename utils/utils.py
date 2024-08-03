@@ -240,7 +240,7 @@ def load_model(cfg):
             model.count()
         elif cfg['data']['model_name'] == 'InceptionI3d':
             model = InceptionI3d(**cfg['model'])
-            '''new_dict = {}
+            ''''new_dict = {}
             for key,value in torch.load('pretrained_models/InceptionI3D/rgb_charades.pt',map_location=torch.device('cpu')).items():
                 if key.startswith('logits'):
                     continue
@@ -249,10 +249,10 @@ def load_model(cfg):
 
         elif cfg['data']['model_name'] == 'InceptionI3d_ThreeView':
             model = InceptionI3D_ThreeView(**cfg['model'])
-            state_dict = torch.load("checkpoints/InceptionI3d/I3D finetune from scratch for one view with Blur video/best_checkpoints.pth",map_location='cpu')
+            '''state_dict = torch.load("checkpoints/InceptionI3d/I3D finetune from scratch for one view with Blur video/best_checkpoints.pth",map_location='cpu')
             model.center.load_state_dict(state_dict,strict = True)
             model.right.load_state_dict(state_dict,strict = True)
-            model.left.load_state_dict(state_dict,strict = True)
+            model.left.load_state_dict(state_dict,strict = True)'''
             model.remove_head()
             model.freeze_and_remove(enpoints=6)
             print("Load I3D Three View")
@@ -296,17 +296,17 @@ def load_model(cfg):
             
         elif cfg['data']['model_name'] == 'swin_transformer':
             model = SwinTransformer3d(**cfg['model'])
-            '''weights = models.video.Swin3D_T_Weights.DEFAULT.get_state_dict(progress=True)
+            #weights = models.video.Swin3D_T_Weights.DEFAULT.get_state_dict(progress=True)
             model.reset_head(400)
-            model.load_state_dict(weights)
-            model.reset_head(model.num_classes)'''
+            #model.load_state_dict(weights)
+            model.reset_head(model.num_classes)
 
         elif cfg['data']['model_name'] == 'swin_transformer_3d_ThreeView':
             model = SwinTransformer3d_ThreeView(**cfg['model'])
-            state_dict = torch.load("/mnt/disk2/anhnct/Hand-Sign-Recognition/checkpoints/swin_transformer/Swin Transformer 3D Tiny for one view finetune from autsl /best_checkpoints.pth",map_location='cpu')
-            model.center.load_state_dict(state_dict,strict = True)
-            model.right.load_state_dict(state_dict,strict = True)
-            model.left.load_state_dict(state_dict,strict = True)
+            #state_dict = torch.load("/mnt/disk2/anhnct/Hand-Sign-Recognition/checkpoints/swin_transformer/Swin Transformer 3D Tiny for one view finetune from autsl /best_checkpoints.pth",map_location='cpu')
+            #model.center.load_state_dict(state_dict,strict = True)
+            #model.right.load_state_dict(state_dict,strict = True)
+            #model.left.load_state_dict(state_dict,strict = True)
             model.remove_head()
             model.freeze_and_remove(layers=4)
         elif cfg['data']['model_name'] == 'SwinTransformer3d_ThreeView_ShareWeights':

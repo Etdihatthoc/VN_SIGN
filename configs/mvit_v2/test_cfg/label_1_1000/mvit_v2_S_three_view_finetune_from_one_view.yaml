@@ -1,11 +1,11 @@
 task: ISLR
 data:
-  model_name: vtn_att_poseflow
-  base_url: data/VN_SIGN
+  model_name: MVitV2_ThreeView
+  base_url: data
   dataset_name: VN_SIGN
   temporal_stride: 2
   num_output_frames: 16
-  crop_two_hand: true
+  crop_two_hand: false
   transform_cfg:
     index_setting:
       - segment #train_p
@@ -18,27 +18,23 @@ data:
     NORM_STD_IMGNET: [0.229, 0.224, 0.225]
   SHOULDER_DIST_EPSILON: 1.2
   WRIST_DELTA: 0.15
-  label_folder: label_1_400
-  data_type: 1_400_center_ord1
+  label_folder: label_1_1000
+  data_type: 1_1000_three_view_ord1
 training:
-  test: true
-  coefficient:
-    cls_x: 1
-    cts_x: 1
-    cosine_x: 1
+  test: True
   label_smoothing: 0
-  device: cuda:0
+  device: cuda:2
   overwrite: true
   log_freq: 1
-  experiment_name: "vtn_att_poseflow autsl to vn sign for one view 1-400 (Testing)"
-  model_dir: results/vtn_att_poseflow/vn_sign
+  experiment_name: "MVIT V2 Small for three view finetune from one view (Testing)"
+  model_dir: results/mvitv2/vn_sign
   random_seed: 42
   shuffle: True
   num_workers: 12
-  prefetch_factor: 4
-  batch_size: 3 #to-debug!
+  prefetch_factor: 2
+  batch_size: 4 #to-debug!
   total_epoch: 300 #to-debug!
-  learning_rate: 0.0001
+  learning_rate: 0.00001
   save_checkpoints: true
   scheduler_factor: 0.1
   scheduler_patience: 5
@@ -51,15 +47,15 @@ training:
   top_k: 5
   print_stats: true
   pretrained: true
-  pretrained_model: /mnt/disk2/anhnct/Hand-Sign-Recognition/checkpoints/vtn_att_poseflow/vtn_att_poseflow autsl to vn sign for one view (1- 400)/best_checkpoints.pth
-  lr_step_size: 10
-  gamma: 0.8
-  num_accumulation_steps: 4
+  pretrained_model: checkpoints/MVitV2_ThreeView/MVIT V2 Small for three view finetune from one view (1-1000)/best_checkpoints.pth
+  lr_step_size: 5
+  gamma: 0.5
+  num_accumulation_steps: 8
   patience: 15
   verbose: true
   delta: 0
   is_early_stopping: true
-  gradient_clip_val: 1
+  gradient_clip_val: 0
   w_decay: 1e-4
   log_train_step: true
   log_steps: 50
@@ -69,10 +65,5 @@ training:
 inference:
   batch_size: 8
 model:
-  num_classes: 400
-  num_heads: 8
-  num_layers: 4
-  embed_size: 512
-  cnn: rn34
-  freeze_layers: 5 # free layers in cnn
-  dropout: 0.1
+  num_classes: 1000
+  

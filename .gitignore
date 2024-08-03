@@ -4,6 +4,7 @@ data/VN_SIGN/pose*
 data/VN_SIGN/poseflow*
 data/VN_SIGN/wholebody*
 log
+__pycache__
 checkpoints
 *pycache*
 *init*
