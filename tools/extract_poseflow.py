@@ -5,7 +5,7 @@ import math
 import os
 from collections import defaultdict
 import numpy as np
-
+from tqdm.auto import tqdm
 
 def read_pose(kp_file):
     with open(kp_file) as kf:
@@ -91,15 +91,17 @@ def normalize(poses,neck_and_head_top):
 
 
 def main():
-    input_dir_ = '/mnt/disk2/anhnct/Hand-Sign-Recognition/data/VN_SIGN/poses_400_1000'
+    input_dir_ = 'data/poses_1_1000'
     input_dirs = sorted(glob.glob(os.path.join(input_dir_, '*')))
     input_dir_index = 0
     total = len(input_dirs)
-    for input_dir in input_dirs:
+
+    for input_dir in tqdm(input_dirs, total=total):
+
         print(f'{input_dir_index}/{total}')
         input_dir_index += 1
 
-        output_dir = input_dir.replace('poses_400_1000', 'poseflow_400_1000')
+        output_dir = input_dir.replace('poses_1_1000', 'poseflow_1_1000')
         if os.path.exists(output_dir):
             continue
         os.makedirs(output_dir, exist_ok=True)
@@ -130,3 +132,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+

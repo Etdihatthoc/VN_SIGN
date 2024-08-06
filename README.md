@@ -90,5 +90,13 @@
    python main.py \--config configs/swin\_transformer\_3d/test\_cfg/label\_1\_1000/swin\_transformer\_3d\_T\_three\_view\_finetune\_from\_one\_view.yaml
 
    
+NOTE\. Gen poseflow for VTN
 
+![alt text](image.png)
+
+1. Tạo nhiều tmux và chạy song song các range, chú ý chỉnh range trong main() của tools/gen_wholebody.py và tools/gen_pose_v2.py như trong hình
+2. Chạy tools/gen_wholebody.py =>> CUDA_VISIBLE_DEVICES=1 python tools/gen_wholebody.py
+3. Chạy tools/gen_pose_v2.py =>> CUDA_VISIBLE_DEVICES=1 python tools/gen_pose_v2.py
+4. Chạy tools/extract_poseflow.py =>> CUDA_VISIBLE_DEVICES=1 python tools/extract_poseflow.py
+5. Xóa folder data/wholebody_1_1000
    

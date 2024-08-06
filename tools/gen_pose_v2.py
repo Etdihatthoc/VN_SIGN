@@ -61,7 +61,7 @@ def gen_pose(base_url,file_name,pose_detector):
     video_url = os.path.join(base_url,file_name)
     pose_results = pose_detector(video_url)
 
-    kp_folder = video_url.replace("videos_400_1000",'poses_400_1000').replace('.mp4',"")
+    kp_folder = video_url.replace("Blur_video",'poses_1_1000').replace('.mp4',"")
     if not os.path.exists(kp_folder):
         os.makedirs(kp_folder,exist_ok=True)
         for idx,pose_result in enumerate(pose_results):
@@ -84,17 +84,20 @@ def gen_pose(base_url,file_name,pose_detector):
 
 
 if __name__ == "__main__":
-    full_data = pd.read_csv("/mnt/disk2/anhnct/Hand-Sign-Recognition/data/VN_SIGN/labels_400_1000.csv")
-   
 
-
-
-   
+    # CHIA THÀNH NHIỀU LUỒNG CHẠY SONG SONG
+    
+    full_data = pd.read_csv("data/label_1_1000/labels_1_1000.csv")[:17000]
+    #full_data = pd.read_csv("data/label_1_1000/labels_1_1000.csv")[17000:34000]
+    #full_data = pd.read_csv("data/label_1_1000/labels_1_1000.csv")[34000:51000]
+    #full_data = pd.read_csv("data/label_1_1000/labels_1_1000.csv")[51000:68000]
+    #full_data = pd.read_csv("data/label_1_1000/labels_1_1000.csv")[68000:]
 
     pose_detector = MMPoseInferencer( "rtmpose-m_8xb512-700e_body8-halpe26-256x192")
 
     print(full_data.shape)
-    for idx,data in full_data.iterrows():
-        gen_pose("../data/VN_SIGN/videos_400_1000",data['name'],pose_detector)
+    
+    for idx, data in tqdm(full_data.iterrows(), total=full_data.shape[0]):
+        gen_pose("data/Blur_video",data['name'],pose_detector)
     
    

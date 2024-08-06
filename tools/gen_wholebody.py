@@ -61,7 +61,7 @@ def gen_pose(base_url,file_name,wholebody_detector):
     video_url = os.path.join(base_url,file_name)
     wholebody_results = wholebody_detector(video_url)
 
-    kp_folder = video_url.replace("videos_400_1000",'wholebody_400_1000').replace('.mp4',"")
+    kp_folder = video_url.replace("Blur_video",'wholebody_1_1000').replace('.mp4',"")
     if not os.path.exists(kp_folder):
         os.makedirs(kp_folder,exist_ok=True)
         for idx,wholebody_result in enumerate(wholebody_results):
@@ -85,14 +85,19 @@ def gen_pose(base_url,file_name,wholebody_detector):
 
 
 if __name__ == "__main__":
-    # full_data = pd.read_csv("/mnt/disk2/anhnct/Hand-Sign-Recognition/data/VN_SIGN/labels_400_1000.csv")[:16000]
-    # full_data = pd.read_csv("/mnt/disk2/anhnct/Hand-Sign-Recognition/data/VN_SIGN/labels_400_1000.csv")[16000:32000]
-    full_data = pd.read_csv("/mnt/disk2/anhnct/Hand-Sign-Recognition/data/VN_SIGN/labels_400_1000.csv")[32000:]
-   
+    
+    # CHIA THÀNH NHIỀU LUỒNG CHẠY SONG SONG
+
+    full_data = pd.read_csv("data/label_1_1000/labels_1_1000.csv")[:17000]
+    #full_data = pd.read_csv("data/label_1_1000/labels_1_1000.csv")[17000:34000]
+    #full_data = pd.read_csv("data/label_1_1000/labels_1_1000.csv")[34000:51000]
+    #full_data = pd.read_csv("data/label_1_1000/labels_1_1000.csv")[51000:68000]
+    #full_data = pd.read_csv("data/label_1_1000/labels_1_1000.csv")[68000:]
+
     wholebody_detector = MMPoseInferencer( "td-hm_res152_8xb32-210e_coco-wholebody-384x288")
     print(full_data.shape)
 
-    for idx,data in full_data.iterrows():
-        gen_pose("/mnt/disk2/anhnct/Hand-Sign-Recognition/data/VN_SIGN/videos_400_1000",data['name'],wholebody_detector)
+    for idx, data in tqdm(full_data.iterrows(), total=full_data.shape[0]):
+        gen_pose("data/Blur_video",data['name'],wholebody_detector)
 
     
