@@ -26,7 +26,7 @@ training:
   device: cuda:2
   overwrite: true
   log_freq: 1
-  experiment_name: "MVIT V2 Small for three view finetune from one view (Testing)"
+  experiment_name: "MVIT V2 Small for three view finetune from one view (1-1000) (Testing)"
   model_dir: results/mvitv2/vn_sign
   random_seed: 42
   shuffle: True

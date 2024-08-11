@@ -30,7 +30,7 @@ training:
   device: cuda:2
   overwrite: true
   log_freq: 1
-  experiment_name: "MVIT V2 Small for one view from scratch 1- 1000 (Testing)"
+  experiment_name: "MVIT V2 Small for one view (1-1000) pretrained from AUTSL (Testing)"
   model_dir: results/mvitv2/vn_sign
   random_seed: 42
   shuffle: True
@@ -51,7 +51,7 @@ training:
   top_k: 5
   print_stats: true
   pretrained: true
-  pretrained_model: checkpoints/mvit_v2/MVIT V2 Small for one view (1-1000) from scratch/best_checkpoints.pth
+  pretrained_model: checkpoints/mvit_v2/MVIT V2 Small for one view (1-1000) pretrained from AUTSL/best_checkpoints.pth
   lr_step_size: 5
   gamma: 0.5
   num_accumulation_steps: 5

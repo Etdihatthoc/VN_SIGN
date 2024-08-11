@@ -1,7 +1,7 @@
 task: ISLR
 data:
   model_name: VTNHCPF_Three_view
-  base_url: /mnt/disk2/anhnct/Hand-Sign-Recognition/data/VN_SIGN
+  base_url: data
   dataset_name: VN_SIGN
   temporal_stride: 2
   num_output_frames: 16

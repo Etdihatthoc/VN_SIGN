@@ -1,7 +1,7 @@
 task: ISLR
 data:
   model_name: vtn_att_poseflow
-  base_url: /mnt/disk2/anhnct/Hand-Sign-Recognition/data/VN_SIGN
+  base_url: data
   dataset_name: VN_SIGN
   temporal_stride: 2
   num_output_frames: 16
@@ -51,7 +51,7 @@ training:
   top_k: 5
   print_stats: true
   pretrained: true
-  pretrained_model: /mnt/disk4/handsign_project/son_data/Experiment/checkpoints/vtn_att_poseflow/vtn_att_poseflow autsl to vn sign for one view (1-1000)/best_checkpoints.pth
+  pretrained_model: checkpoints/vtn_att_poseflow/vtn_att_poseflow autsl to vn sign for one view (1-1000)/best_checkpoints.pth
   lr_step_size: 10
   gamma: 0.8
   num_accumulation_steps: 4

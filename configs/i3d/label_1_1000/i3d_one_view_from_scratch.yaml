@@ -29,7 +29,7 @@ training:
   device: cuda:2
   overwrite: true
   log_freq: 1
-  experiment_name: "I3D finetune from scratch for one view with Blur video"
+  experiment_name: "I3D finetune pretrained from AUTSL for one view with Blur video"
   model_dir: results/i3d/vn_sign
   random_seed: 42
   shuffle: True
@@ -37,7 +37,7 @@ training:
   prefetch_factor: 4
   batch_size: 4 #to-debug!
   total_epoch: 300 #to-debug!
-  learning_rate: 0.0001
+  learning_rate: 0.00001
   save_checkpoints: true
   scheduler_factor: 0.1
   scheduler_patience: 5
@@ -49,8 +49,8 @@ training:
   lr_scheduler: StepLR
   top_k: 5
   print_stats: true
-  pretrained: false
-  pretrained_model: None #checkpoints/InceptionI3d/I3D for AUTSL pretrained on charades for one view/autsl_best_checkpoints.pth
+  pretrained: true
+  pretrained_model: checkpoints/InceptionI3d/I3D for AUTSL pretrained on charades for one view/autsl_best_checkpoints.pth
   lr_step_size: 10
   gamma: 0.8
   num_accumulation_steps: 4

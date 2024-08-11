@@ -29,7 +29,7 @@ training:
   device: cuda:1
   overwrite: true
   log_freq: 1
-  experiment_name: "Swin Transformer 3D Tiny for one view from scratch (1-1000)"
+  experiment_name: "Swin Transformer 3D Tiny for one view pretrained from AUTSL (1-1000)"
   model_dir: results/swin_transformer/vn_sign
   random_seed: 42
   shuffle: True
@@ -49,8 +49,8 @@ training:
   lr_scheduler: StepLR
   top_k: 5
   print_stats: true
-  pretrained: false
-  pretrained_model: None #checkpoints/swin_transformer/Swin Transformer 3D Tiny for one view of AUTSL pretrained on kinetics400 /autsl_best_checkpoints.pth
+  pretrained: true
+  pretrained_model: checkpoints/swin_transformer/Swin Transformer 3D Tiny for one view of AUTSL pretrained on kinetics400 /autsl_best_checkpoints.pth
   lr_step_size: 5
   gamma: 0.5
   num_accumulation_steps: 5

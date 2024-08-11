@@ -174,20 +174,20 @@ def load_model(cfg):
 
         elif cfg['data']['model_name'] == 'mvit_v2':
             model = mvit_v2_s(**cfg['model'])
-            '''state_dict = torch.load(cfg['training']['pretrained_model'],map_location=torch.device('cpu'))
+            state_dict = torch.load(cfg['training']['pretrained_model'],map_location=torch.device('cpu'))
             if "autsl" in cfg['training']['pretrained_model'].split("/")[-1]:
                 model.reset_head(226)
                 model.load_state_dict(state_dict)
                 model.reset_head(model.num_classes)
             else:
-                model.load_state_dict(state_dict)'''
+                model.load_state_dict(state_dict)
 
         elif cfg['data']['model_name'] == 'MVitV2_ThreeView':
             model = MVitV2_ThreeView(**cfg['model'])
 
-            '''model.remove_head()
+            model.remove_head()
             model.load_state_dict(torch.load(cfg['training']['pretrained_model'],map_location='cpu'))
-            print("Load Mvit V2 Three View")'''
+            print("Load Mvit V2 Three View")
 
         elif cfg['data']['model_name'] == 'MVitV2_ThreeView_ShareWeights':
             model = MVitV2_ThreeView_ShareWeights(**cfg['model'])
@@ -238,21 +238,22 @@ def load_model(cfg):
             state_dict = torch.load("checkpoints/vtn_att_poseflow/vtn_att_poseflow autsl to vn sign for one view (1- 1000)/best_checkpoints.pth",map_location='cpu')
             model.encoder.load_state_dict(state_dict,strict = False) # ingore prompt and head
             model.count()
+
         elif cfg['data']['model_name'] == 'InceptionI3d':
             model = InceptionI3d(**cfg['model'])
-            ''''new_dict = {}
+            new_dict = {}
             for key,value in torch.load('pretrained_models/InceptionI3D/rgb_charades.pt',map_location=torch.device('cpu')).items():
                 if key.startswith('logits'):
                     continue
                 new_dict[key] = value
-            model.load_state_dict(new_dict,strict = False)'''
+            model.load_state_dict(new_dict,strict = False)
 
         elif cfg['data']['model_name'] == 'InceptionI3d_ThreeView':
             model = InceptionI3D_ThreeView(**cfg['model'])
-            '''state_dict = torch.load("checkpoints/InceptionI3d/I3D finetune from scratch for one view with Blur video/best_checkpoints.pth",map_location='cpu')
+            state_dict = torch.load("checkpoints/InceptionI3d/I3D finetune pretrained from AUTSL for one view with Blur video/best_checkpoints.pth",map_location='cpu')
             model.center.load_state_dict(state_dict,strict = True)
             model.right.load_state_dict(state_dict,strict = True)
-            model.left.load_state_dict(state_dict,strict = True)'''
+            model.left.load_state_dict(state_dict,strict = True)
             model.remove_head()
             model.freeze_and_remove(enpoints=6)
             print("Load I3D Three View")
@@ -296,17 +297,17 @@ def load_model(cfg):
             
         elif cfg['data']['model_name'] == 'swin_transformer':
             model = SwinTransformer3d(**cfg['model'])
-            #weights = models.video.Swin3D_T_Weights.DEFAULT.get_state_dict(progress=True)
+            weights = models.video.Swin3D_T_Weights.DEFAULT.get_state_dict(progress=True)
             model.reset_head(400)
-            #model.load_state_dict(weights)
+            model.load_state_dict(weights)
             model.reset_head(model.num_classes)
 
         elif cfg['data']['model_name'] == 'swin_transformer_3d_ThreeView':
             model = SwinTransformer3d_ThreeView(**cfg['model'])
-            #state_dict = torch.load("/mnt/disk2/anhnct/Hand-Sign-Recognition/checkpoints/swin_transformer/Swin Transformer 3D Tiny for one view finetune from autsl /best_checkpoints.pth",map_location='cpu')
-            #model.center.load_state_dict(state_dict,strict = True)
-            #model.right.load_state_dict(state_dict,strict = True)
-            #model.left.load_state_dict(state_dict,strict = True)
+            state_dict = torch.load("checkpoints/swin_transformer/Swin Transformer 3D Tiny for one view pretrained from AUTSL (1-1000)/best_checkpoints.pth",map_location='cpu')
+            model.center.load_state_dict(state_dict,strict = True)
+            model.right.load_state_dict(state_dict,strict = True)
+            model.left.load_state_dict(state_dict,strict = True)
             model.remove_head()
             model.freeze_and_remove(layers=4)
         elif cfg['data']['model_name'] == 'SwinTransformer3d_ThreeView_ShareWeights':
@@ -342,16 +343,16 @@ def load_model(cfg):
         elif cfg['data']['model_name'] == 'mvit_v2':
             model = mvit_v2_s(**cfg['model'])
             model.reset_head(400)
-            '''weights = models.video.MViT_V2_S_Weights.KINETICS400_V1.get_state_dict(progress=True)
-            model.load_state_dict(weights)'''
+            weights = models.video.MViT_V2_S_Weights.KINETICS400_V1.get_state_dict(progress=True)
+            model.load_state_dict(weights)
             model.reset_head(model.num_classes)
 
         elif cfg['data']['model_name'] == 'MVitV2_ThreeView':
             model = MVitV2_ThreeView(**cfg['model'])
-            '''state_dict = torch.load("checkpoints/mvit_v2/MVIT V2 Small for one view (1-1000) finetune from AUTSL/best_checkpoints.pth",map_location='cpu')
+            state_dict = torch.load("checkpoints/mvit_v2/MVIT V2 Small for one view (1-1000) pretrained from AUTSL/best_checkpoints.pth",map_location='cpu')
             model.center.load_state_dict(state_dict,strict = True)
             model.right.load_state_dict(state_dict,strict = True)
-            model.left.load_state_dict(state_dict,strict = True)'''
+            model.left.load_state_dict(state_dict,strict = True)
             model.remove_head()
             model.freeze_and_remove(layers=8)
         elif cfg['data']['model_name'] == 'MVitV2_ThreeView_ShareWeights':

@@ -26,7 +26,7 @@ training:
     cts_x: 1
     cosine_x: 1
   label_smoothing: 0
-  device: cuda:1
+  device: cuda:3
   overwrite: true
   log_freq: 1
   experiment_name: "I3D for VN SIGN for three view finetune form oneview"
@@ -37,7 +37,7 @@ training:
   prefetch_factor: 4
   batch_size: 4 #to-debug!
   total_epoch: 300 #to-debug!
-  learning_rate: 0.0001
+  learning_rate: 0.00001
   save_checkpoints: true
   scheduler_factor: 0.1
   scheduler_patience: 5
@@ -45,7 +45,7 @@ training:
   plot_lr: true
   plot_acc: true
   criterion: MyCustomLoss
-  optimzer: Adam
+  optimzer: SGD
   lr_scheduler: StepLR
   top_k: 5
   print_stats: true

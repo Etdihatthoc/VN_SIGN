@@ -29,7 +29,7 @@ training:
   device: cuda:1
   overwrite: true
   log_freq: 1
-  experiment_name: "MVIT V2 Small for one view (1-1000) from scratch"
+  experiment_name: "MVIT V2 Small for one view (1-1000) pretrained from AUTSL"
   model_dir: results/mvitv2/vn_sign
   random_seed: 42
   shuffle: True
@@ -49,8 +49,8 @@ training:
   lr_scheduler: StepLR
   top_k: 5
   print_stats: true
-  pretrained: false
-  pretrained_model: None #checkpoints/mvit_v2/MVIT V2 Small for one view (1-1000) finetune from AUTSL (Training with Blur video)/current_checkpoints.pth
+  pretrained: true
+  pretrained_model: checkpoints/mvit_v2/MVIT V2 Small for one view of AUTSL pretrained on kinetics400/autsl_best_checkpoints.pth
   lr_step_size: 5
   gamma: 0.5
   num_accumulation_steps: 5
