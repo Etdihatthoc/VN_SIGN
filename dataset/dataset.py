@@ -57,6 +57,7 @@ def build_dataset(dataset_cfg, split,model = None,**kwargs):
         dataset = GCN_BERT(dataset_cfg['base_url'],split,None,dataset_cfg,**kwargs)
 
     distillation_models = ['MvitV2_OneView_Sim_Knowledge_Distillation','I3D_OneView_Sim_Knowledge_Distillation','VideoSwinTransformer_OneView_Sim_Knowledge_Distillation','MvitV2_OneView_KD_Knowledge_Distillation_Visual_Prompt_Tuning']
+    
     if 'ThreeView' in dataset_cfg['model_name'] or dataset_cfg['model_name'] in distillation_models:
         dataset = ThreeViewsData(dataset_cfg['base_url'],split,dataset_cfg,**kwargs)
 
@@ -68,6 +69,7 @@ def build_dataset(dataset_cfg, split,model = None,**kwargs):
     
     if dataset_cfg['model_name'] == "swin_transformer" or dataset_cfg['model_name'] == 'VideoSwinTransformer_OneView_Sim_Knowledge_Distillation_Inference':
         dataset = SwinTransformer(dataset_cfg['base_url'],split,dataset_cfg,**kwargs)
+        
     if 'mvit' in dataset_cfg['model_name'] or dataset_cfg['model_name'] == 'MvitV2_OneView_Sim_Knowledge_Distillation_Inference':
         dataset = MVIT(dataset_cfg['base_url'],split,dataset_cfg,**kwargs)
 

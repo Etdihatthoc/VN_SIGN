@@ -23,10 +23,10 @@ data:
 training:
   test: true
   label_smoothing: 0
-  device: cuda:1
+  device: cuda:3
   overwrite: true
   log_freq: 1
-  experiment_name: "Swin Transformer 3D Tiny for threeview finetune from oneview 1_1000 (Testing)"
+  experiment_name: "Swin Transformer 3D Tiny for threeview finetune from oneview (1-1000) change lr 0.00001 -> 0.0001 (Testing)"
   model_dir: results/swin_transformer/vn_sign
   random_seed: 42
   shuffle: True
@@ -47,7 +47,7 @@ training:
   top_k: 5
   print_stats: true
   pretrained: true
-  pretrained_model: checkpoints/swin_transformer_3d_ThreeView/Swin Transformer 3D Tiny for threeview finetune from oneview (1-1000)/best_checkpoints.pth
+  pretrained_model: checkpoints/swin_transformer_3d_ThreeView/Swin Transformer 3D Tiny for threeview finetune from oneview (1-1000) change lr 0.00001 -> 0.0001/best_checkpoints.pth
   lr_step_size: 5
   gamma: 0.5
   num_accumulation_steps: 8

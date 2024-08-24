@@ -26,10 +26,10 @@ training:
     cts_x: 1
     cosine_x: 1
   label_smoothing: 0
-  device: cuda:1
+  device: cuda:2
   overwrite: true
   log_freq: 1
-  experiment_name: "MVIT V2 Small for one view (1-1000) pretrained from AUTSL"
+  experiment_name: "MVIT V2 Small for one view (1-1000) pretrained from AUTSL for Blur video"
   model_dir: results/mvitv2/vn_sign
   random_seed: 42
   shuffle: True

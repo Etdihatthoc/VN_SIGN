@@ -249,7 +249,7 @@ def load_model(cfg):
             model.load_state_dict(new_dict,strict = False)
 
         elif cfg['data']['model_name'] == 'InceptionI3d_ThreeView':
-            model = InceptionI3D_ThreeView(**cfg['model'])
+            model = InceptionI3D_ThreeView(**cfg['model']) #checkpoints/InceptionI3d/I3D finetune pretrained from AUTSL for one view with Blur video/best_checkpoints.pth
             state_dict = torch.load("checkpoints/InceptionI3d/I3D finetune pretrained from AUTSL for one view with Blur video/best_checkpoints.pth",map_location='cpu')
             model.center.load_state_dict(state_dict,strict = True)
             model.right.load_state_dict(state_dict,strict = True)
@@ -349,7 +349,7 @@ def load_model(cfg):
 
         elif cfg['data']['model_name'] == 'MVitV2_ThreeView':
             model = MVitV2_ThreeView(**cfg['model'])
-            state_dict = torch.load("checkpoints/mvit_v2/MVIT V2 Small for one view (1-1000) pretrained from AUTSL/best_checkpoints.pth",map_location='cpu')
+            state_dict = torch.load("checkpoints/mvit_v2/MVIT V2 Small for one view (1-1000) pretrained from AUTSL for Blur video/best_checkpoints.pth",map_location='cpu')
             model.center.load_state_dict(state_dict,strict = True)
             model.right.load_state_dict(state_dict,strict = True)
             model.left.load_state_dict(state_dict,strict = True)

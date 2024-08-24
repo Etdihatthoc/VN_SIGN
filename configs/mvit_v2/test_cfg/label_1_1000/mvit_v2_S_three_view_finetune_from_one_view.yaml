@@ -23,7 +23,7 @@ data:
 training:
   test: True
   label_smoothing: 0
-  device: cuda:2
+  device: cuda:3
   overwrite: true
   log_freq: 1
   experiment_name: "MVIT V2 Small for three view finetune from one view (1-1000) (Testing)"

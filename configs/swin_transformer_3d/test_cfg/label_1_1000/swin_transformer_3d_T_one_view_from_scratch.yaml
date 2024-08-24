@@ -27,7 +27,7 @@ training:
     cts_x: 1
     cosine_x: 1
   label_smoothing: 0
-  device: cuda:3
+  device: cuda:1
   overwrite: true
   log_freq: 1
   experiment_name: "Swin Transformer 3D Tiny for one view pretrained from AUTSL (1-1000) (Testing) "

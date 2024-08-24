@@ -58,6 +58,7 @@ class SwinTransformer(Dataset):
         index_setting = self.data_cfg['transform_cfg'].get('index_setting', ['consecutive','pad','central','pad'])
         clip = []
         if self.data_cfg['dataset_name'] == "VN_SIGN":
+            #path = f'data/Blur_video/{name}'   
             path = f'data/Blur_video/{name}'   
         elif self.data_cfg['dataset_name'] == "AUTSL":
             path = f'{self.base_url}/{self.split}/{name}'   
@@ -88,4 +89,3 @@ class SwinTransformer(Dataset):
     
     def __len__(self):
         return len(self.train_labels)
-

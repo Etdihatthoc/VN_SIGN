@@ -200,7 +200,7 @@ if __name__ == "__main__":
             scores_top_k_class=[]
 
             # evaluation: 10 times
-            for i in range(10): 
+            for i in range(5): 
                 trainer.model.eval()
 
                 _,_,  pred_correct, pred_all, acc= trainer.evaluate(test_loader)

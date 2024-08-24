@@ -27,7 +27,7 @@ training:
     cts_x: 1
     cosine_x: 1
   label_smoothing: 0
-  device: cuda:2
+  device: cuda:1
   overwrite: true
   log_freq: 1
   experiment_name: "I3D for VN SIGN for three view finetune form oneview (Testing)"
