@@ -20,3 +20,5 @@ wandb
 # temporary
 data/VN_SIGN/full_data_200_400.csv
 CK
+data/label_1_200
+data/label_1_400
